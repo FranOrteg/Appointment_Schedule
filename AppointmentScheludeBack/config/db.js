@@ -7,3 +7,4 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME,
     waitForConnections: true
 });
+global.db = pool.promise();

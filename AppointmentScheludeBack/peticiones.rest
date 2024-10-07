@@ -2,6 +2,17 @@
 @urlUsers = /api/users
 
 
-#### USERS
+#### USERS GET
 
 GET {{host}}{{urlUsers}}
+
+### USERS REGISTER
+
+POST {{host}}{{urlUsers}}/signup
+Content-Type: application/json
+
+{
+    "Name": "Fran",
+    "Surname": "Ortega",
+    "Phone": "678XXXXX"
+}
