@@ -1,0 +1,7 @@
+@host = http://localhost:3000
+@urlUsers = /api/users
+
+
+#### USERS
+
+GET {{host}}{{urlUsers}}
