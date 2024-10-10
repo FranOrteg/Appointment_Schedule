@@ -1,0 +1,54 @@
+.container {
+    position: relative;
+}
+
+.formulario {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #2a3d6b;
+    color: white;
+    position: relative;
+}
+
+.formulario h4 {
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form-control {
+    background-color: #2a3d6b;
+    border: 1px solid #c1d23e;
+    color: white;
+}
+
+.form-select {
+    background-color: #2a3d6b;
+    border: 1px solid #c1d23e;
+    color: white;
+}
+
+.btn {
+    background-color: #c1d23e;
+    border: 1px solid #c1d23e;
+    color: black;
+    width: 150px;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+

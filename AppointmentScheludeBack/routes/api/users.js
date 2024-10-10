@@ -25,7 +25,6 @@ router.post('/signin', async (req, res) => {
             return res.json({ fatal: 'Password or email Wrong'});
         }
         const user = result[0];
-        console.log(user);
         res.json({
             success: 'Login Success',
             token: createToken(user)
