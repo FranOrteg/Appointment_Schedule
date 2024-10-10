@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent {
 
   formulario: FormGroup;
 
-  constructor() { 
+  constructor(
+    private userService: UsersService
+  ) { 
     this.formulario = new FormGroup({
       email: new FormControl(null,[
         Validators.required
@@ -25,6 +28,19 @@ export class LoginComponent {
 
 
   async onSubmit(){
-    console.log(this.formulario.value, "Valores del formulario");
+    try {
+      
+      console.log(this.formulario.value, "Valores del formulario");
+      const response = await this.userService.getCustomerByLogin(this.formulario.value);
+  
+      if(response.fatal){
+        return alert(response.fatal);
+      }
+      localStorage.setItem("token", response.token);
+      console.log("sale el token",response);
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
