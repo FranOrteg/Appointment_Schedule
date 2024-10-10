@@ -14,5 +14,16 @@ Content-Type: application/json
 {
     "Name": "Fran",
     "Surname": "Ortega",
-    "Phone": "678XXXXX"
+    "Phone": "678XXXXX",
+    "Email": "test@mail.es",
+    "Password": "1234"
+}
+
+### USERS LOGIN
+POST {{host}}{{urlUsers}}/signin
+Content-Type: application/json
+
+{
+    "Email": "test@mail.es",
+    "Password": "1234"
 }

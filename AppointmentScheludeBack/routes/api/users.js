@@ -1,4 +1,5 @@
-const { createCustomer } = require('../../models/users.model')
+const { createToken } = require('../../helpers/utils');
+const { createCustomer, getUserByEmail } = require('../../models/users.model')
 
 const router = require('express').Router();
 
@@ -14,6 +15,24 @@ router.post('/signup', async ( req,res) => {
     }catch (error){
         res.json({fatal: error.message})
     }
-})
+});
+
+// CUSTOMER SING IN
+router.post('/signin', async (req, res) => {
+	try {
+        const [result] = await getUserByEmail(req.body.Email);
+        if (result.length === 0){
+            return res.json({ fatal: 'Password or email Wrong'});
+        }
+        const user = result[0];
+        console.log(user);
+        res.json({
+            success: 'Login Success',
+            token: createToken(user)
+        })
+    } catch (error) {
+        res.json({ fatal: error.message});
+    }
+});
 
 module.exports = router;
