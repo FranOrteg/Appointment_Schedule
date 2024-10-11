@@ -1,16 +1,17 @@
 <main>
-    <mat-form-field appearance="fill">
-      <mat-label>Elige una fecha</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        [(ngModel)]="selectedDate"
-        (dateChange)="onDateChange($event)"
-        placeholder="DD/MM/AAAA"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
   
-  </main>
+  <mat-form-field appearance="fill">
+    <mat-label>Elige una fecha</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="selectedDate"
+      (dateChange)="onDateChange($event)"
+      placeholder="DD/MM/AAAA"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  
+</main>
   

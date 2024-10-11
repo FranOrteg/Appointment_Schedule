@@ -1,5 +1,6 @@
 @host = http://localhost:3000
 @urlUsers = /api/users
+@urlSlots = /api/timeslots
 
 
 #### USERS GET
@@ -26,4 +27,12 @@ Content-Type: application/json
 {
     "Email": "test@mail.es",
     "Password": "1234"
+}
+
+### TIMESLOTS
+GET {{host}}{{urlSlots}}/slots
+Content-Type: application/json
+
+{
+    "ReservationDate": "2024-11-08"
 }
