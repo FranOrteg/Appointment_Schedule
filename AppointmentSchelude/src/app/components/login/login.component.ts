@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 
@@ -12,9 +12,9 @@ import { UsersService } from '../../services/users.service';
 export class LoginComponent {
 
   formulario: FormGroup;
+  userService = inject(UsersService);
 
   constructor(
-    private userService: UsersService
   ) { 
     this.formulario = new FormGroup({
       email: new FormControl(null,[

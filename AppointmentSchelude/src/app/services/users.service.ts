@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class UsersService {
 
-  baseUrl: string = "http//localhost:3000"
+  baseUrl: string = "http://localhost:3000"
 
   constructor(
     private httpClient: HttpClient
