@@ -1,26 +1,28 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ ReactiveFormsModule ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
   formulario: FormGroup;
   userService = inject(UsersService);
+  utilsService = inject(UtilsService)
 
   constructor(
   ) { 
     this.formulario = new FormGroup({
-      email: new FormControl(null,[
+      Email: new FormControl(null,[
         Validators.required
       ]),
-      password: new FormControl(null,[
+      Password: new FormControl(null,[
         Validators.required
       ])
     },[]);
@@ -32,6 +34,7 @@ export class LoginComponent {
       
       console.log(this.formulario.value, "Valores del formulario");
       const response = await this.userService.getCustomerByLogin(this.formulario.value);
+      console.log(response, "Respuesta del servidor");
   
       if(response.fatal){
         return alert(response.fatal);
@@ -42,5 +45,7 @@ export class LoginComponent {
     } catch (error) {
       console.log(error);
     }
+    const token = this.utilsService.getToken()
+    console.log(token);
   }
 }
