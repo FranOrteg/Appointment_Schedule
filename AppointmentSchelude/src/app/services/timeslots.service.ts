@@ -15,7 +15,7 @@ export class TimeslotsService {
 
   getSlots( Date: any ){
     return firstValueFrom(
-      this.httpClient.get<any>(`${this.baseUrl}/api/timeslots/slots`,Date)
+      this.httpClient.get<any[]>(`${this.baseUrl}/api/timeslots/${Date}`)
     )
   }
 }

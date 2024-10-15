@@ -18,7 +18,7 @@ export class TimeslotsComponent {
 
 
   async ngOnInit(){
-   const date = "2024-11-07T23:00:00.000Z" 
+   const date = "2024-11-05" 
    const timeSlots = await this.timeSlotsService.getSlots(date);
    console.log(timeSlots)
   }
