@@ -30,9 +30,4 @@ Content-Type: application/json
 }
 
 ### TIMESLOTS
-GET {{host}}{{urlSlots}}/slots
-Content-Type: application/json
-
-{
-    "ReservationDate": "2024-11-08"
-}
+GET {{host}}{{urlSlots}}/2024-11-05

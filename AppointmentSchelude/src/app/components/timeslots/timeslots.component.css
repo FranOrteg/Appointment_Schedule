@@ -1,0 +1,17 @@
+
+.badges{
+    width: 100%;
+    height: auto;
+}
+
+
+
+.badges span{
+    display: block;
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
+}

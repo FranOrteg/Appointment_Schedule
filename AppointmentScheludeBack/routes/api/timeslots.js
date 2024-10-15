@@ -2,11 +2,15 @@ const router = require('express').Router();
 
 const { getSlots } = require('../../models/timeslots.model');
 
-// GET SLOTS
-router.get('/slots', async (req,res)=> {
+// GET SLOTS BY DAY
+router.get('/:date', async (req,res)=> {
+
+    const { date } = req.params;
+    console.log(date, "fecha recibida del cliente");
+    
     
     try {
-        const [result] = await getSlots(req.body.ReservationDate);
+        const [result] = await getSlots(date);
         res.json(result);
     } catch (error) {
         res.json({ fatal: error.message});
