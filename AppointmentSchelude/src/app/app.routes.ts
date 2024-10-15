@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LoginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
 
@@ -9,7 +10,7 @@ export const routes: Routes = [
     
     ////////////
     
-    { path: 'calendar' , component: CalendarComponent},
+    { path: 'calendar' , component: CalendarComponent, canActivate: [LoginGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignUpComponent},
     

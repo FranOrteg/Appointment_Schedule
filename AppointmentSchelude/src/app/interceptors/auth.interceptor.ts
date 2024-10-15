@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log('pasa por interceptors')
     //Sacar token de localStorage
-    const token = localStorage.getItem('token') || '';
+    const token = sessionStorage.getItem('token') || '';
     //Insertar token en angular
     const req = request.clone({
       headers: request.headers.set('Authorization', token)

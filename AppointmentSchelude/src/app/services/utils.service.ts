@@ -10,7 +10,7 @@ export class UtilsService {
   constructor() { }
 
   getToken() {
-    const obj = jwtDecode.jwtDecode<any>(localStorage.getItem('token')!);
+    const obj = jwtDecode.jwtDecode<any>(sessionStorage.getItem('token')!);
     console.log(obj, "token decodificado");   
     return obj;
   }

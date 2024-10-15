@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { UtilsService } from '../../services/utils.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,14 @@ export class LoginComponent {
   utilsService = inject(UtilsService)
 
   constructor(
+    private router: Router
   ) { 
+
+    const token = sessionStorage.getItem('token');
+    if (token){
+      this.router.navigate(['/calendar']);
+    }
+
     this.formulario = new FormGroup({
       Email: new FormControl(null,[
         Validators.required
@@ -32,20 +40,19 @@ export class LoginComponent {
   async onSubmit(){
     try {
       
-      console.log(this.formulario.value, "Valores del formulario");
       const response = await this.userService.getCustomerByLogin(this.formulario.value);
-      console.log(response, "Respuesta del servidor");
   
       if(response.fatal){
         return alert(response.fatal);
       }
-      localStorage.setItem("token", response.token);
-      console.log("sale el token",response);
+      
+      sessionStorage.setItem("token", response.token);
+      this.formulario.reset();
+      this.router.navigate(['/calendar']);
       
     } catch (error) {
       console.log(error);
     }
-    const token = this.utilsService.getToken()
-    console.log(token);
+
   }
 }
