@@ -11,7 +11,6 @@ export class UtilsService {
 
   getToken() {
     const obj = jwtDecode.jwtDecode<any>(sessionStorage.getItem('token')!);
-    console.log(obj, "token decodificado");   
     return obj;
   }
 
