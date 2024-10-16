@@ -13,6 +13,7 @@ import moment from 'moment';
 export class TimeslotsComponent {
 
   @Input() timeSlots: any[] = [];
+  selectedSlot: any = null;
   
   timeSlotsService = inject(TimeslotsService);
 
@@ -32,5 +33,13 @@ export class TimeslotsComponent {
     }
   }
 
+  onSlotSelect( slot: any ) {
+    this.selectedSlot = slot;
+    console.log(this.selectedSlot);
+  }
+
+  isSlotAvailable( slot: any ): boolean {
+    return slot.Available;
+  }
 
 }

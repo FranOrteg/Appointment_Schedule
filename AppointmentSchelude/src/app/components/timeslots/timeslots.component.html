@@ -1,7 +1,14 @@
 <main>
 
-    <div class="badges">
-        <span *ngFor="let slot of timeSlots" class="badge text-bg-info">{{slot.StartHour}}</span>
-    </div>
+    <div class="slots-container">
+        <button
+          *ngFor="let slot of timeSlots"
+          [ngClass]="{'selected': slot === selectedSlot}"
+          [disabled]="!slot.Available"
+          (click)="onSlotSelect(slot)">
+          {{ slot.StartHour }}
+        </button>
+      </div>
+      
 
 </main>

@@ -18,4 +18,10 @@ export class TimeslotsService {
       this.httpClient.get<any[]>(`${this.baseUrl}/api/timeslots/${Date}`)
     )
   }
+
+  reserveSlot( slotId: number){
+    return firstValueFrom(
+      this.httpClient.put<any>(`${this.baseUrl}/api/timeslots/${slotId}/reserve`, {})
+    )
+  }
 }

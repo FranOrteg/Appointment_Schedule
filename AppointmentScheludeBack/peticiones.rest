@@ -31,3 +31,6 @@ Content-Type: application/json
 
 ### TIMESLOTS
 GET {{host}}{{urlSlots}}/2024-11-05
+
+### RESERVE TIMESLOTS
+PUT {{host}}{{urlSlots}}/548/reserve
