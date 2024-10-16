@@ -13,7 +13,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <timeslots *ngIf="selectedDate"></timeslots>
+  <timeslots *ngIf="slots.length > 0" [timeSlots]="slots"></timeslots>
   
 </main>
   

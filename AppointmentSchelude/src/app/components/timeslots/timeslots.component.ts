@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TimeslotsService } from '../../services/timeslots.service';
 import { CommonModule } from '@angular/common';
+import moment from 'moment';
 
 @Component({
   selector: 'timeslots',
@@ -11,28 +12,32 @@ import { CommonModule } from '@angular/common';
 })
 export class TimeslotsComponent {
 
-  timeSlots: any[] = [];
+  @Input() timeSlots: any[] = [];
   
   timeSlotsService = inject(TimeslotsService);
 
   constructor() {}
 
 
-  async ngOnInit() {
-    const date = "2024-11-08";
+  async requestSlots( Date: any ) {
     try {
-      const response = await this.timeSlotsService.getSlots(date);
+      const response = await this.timeSlotsService.getSlots(Date);
       if (response && response.length > 0) {
         this.timeSlots = response.map(( data ) => {
+          console.log('Original StartHour:', data.StartHour);
           return {
             ...data,
-            StartHour: data.StartHour.slice(0,-3)
+            StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
           }
         });
       }
       console.log(this.timeSlots);
+      return this.timeSlots;
     } catch (error) {
       console.error('Error fetching timeslots:', error);
+      return []
     }
   }
+
+
 }

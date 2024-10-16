@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { TimeslotsComponent } from "../timeslots/timeslots.component";
 import { CommonModule } from '@angular/common';
+import { TimeslotsService } from '../../services/timeslots.service';
 
 export const MY_FORMATS = {
   parse: {
@@ -48,14 +49,21 @@ export const MY_FORMATS = {
 export class CalendarComponent {
   
   selectedDate: Date | null = null;
+  slots: any[] = []
+  
+  timeSlotService = inject(TimeslotsService);
+  
+  constructor(){}
 
-  onDateChange(event: any) {
+
+  
+  async onDateChange(event: any) {
     
     this.selectedDate = new Date(event.value);
-    console.log('Fecha seleccionada:', this.selectedDate.getDate());
     let formattedDate = this.formatDate(this.selectedDate);
-    console.log('Fecha formateada:', formattedDate);
-
+    
+    this.slots = await this.timeSlotService.getSlots(formattedDate);
+    console.log(this.slots);
   }
 
   formatDate(date: Date): string {

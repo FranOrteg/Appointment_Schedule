@@ -4,6 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { TimeslotsComponent } from './components/timeslots/timeslots.component';
 
 export const appConfig: ApplicationConfig = {
   
@@ -12,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideAnimationsAsync(), 
     provideHttpClient(),
-
+    TimeslotsComponent
   ]
 };
