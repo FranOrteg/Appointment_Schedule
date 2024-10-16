@@ -3,7 +3,7 @@ import { TimeslotsService } from '../../services/timeslots.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-timeslots',
+  selector: 'timeslots',
   standalone: true,
   imports: [ CommonModule ],
   templateUrl: './timeslots.component.html',

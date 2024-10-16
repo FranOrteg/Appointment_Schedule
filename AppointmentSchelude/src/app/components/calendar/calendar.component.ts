@@ -5,6 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMomentDateModule, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { TimeslotsComponent } from "../timeslots/timeslots.component";
+import { CommonModule } from '@angular/common';
 
 export const MY_FORMATS = {
   parse: {
@@ -27,7 +29,9 @@ export const MY_FORMATS = {
     MatMomentDateModule,
     MatInputModule,
     FormsModule,
-  ],
+    TimeslotsComponent,
+    CommonModule
+],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     {
@@ -42,10 +46,22 @@ export const MY_FORMATS = {
 })
 
 export class CalendarComponent {
+  
   selectedDate: Date | null = null;
 
   onDateChange(event: any) {
-    console.log('Fecha seleccionada:', event.value);
-    // 'event.value' ya es un objeto Moment
+    
+    this.selectedDate = new Date(event.value);
+    console.log('Fecha seleccionada:', this.selectedDate.getDate());
+    let formattedDate = this.formatDate(this.selectedDate);
+    console.log('Fecha formateada:', formattedDate);
+
+  }
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
   }
 }

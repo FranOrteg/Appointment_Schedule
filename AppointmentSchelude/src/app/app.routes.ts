@@ -14,7 +14,6 @@ export const routes: Routes = [
     { path: 'calendar' , component: CalendarComponent, canActivate: [LoginGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignUpComponent},
-    { path: 'timeslots', component: TimeslotsComponent},
     
     ////////////
 
