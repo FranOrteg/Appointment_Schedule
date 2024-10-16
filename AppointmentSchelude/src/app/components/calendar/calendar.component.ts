@@ -8,6 +8,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { TimeslotsComponent } from "../timeslots/timeslots.component";
 import { CommonModule } from '@angular/common';
 import { TimeslotsService } from '../../services/timeslots.service';
+import moment from 'moment';
 
 export const MY_FORMATS = {
   parse: {
@@ -64,6 +65,13 @@ export class CalendarComponent {
     
     this.slots = await this.timeSlotService.getSlots(formattedDate);
     console.log(this.slots);
+
+    this.slots = this.slots.map(( data ) => {
+      return {
+        ...data,
+        StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
+      }
+    });
   }
 
   formatDate(date: Date): string {

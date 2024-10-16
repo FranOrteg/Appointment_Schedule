@@ -21,19 +21,12 @@ export class TimeslotsComponent {
 
   async requestSlots( Date: any ) {
     try {
-      const response = await this.timeSlotsService.getSlots(Date);
-      if (response && response.length > 0) {
-        this.timeSlots = response.map(( data ) => {
-          console.log('Original StartHour:', data.StartHour);
-          return {
-            ...data,
-            StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
-          }
-        });
-      }
-      console.log(this.timeSlots);
+      
+      this.timeSlots = await this.timeSlotsService.getSlots(Date);      
       return this.timeSlots;
+    
     } catch (error) {
+      
       console.error('Error fetching timeslots:', error);
       return []
     }
