@@ -8,7 +8,16 @@
           (click)="onSlotSelect(slot)">
           {{ slot.StartHour }}
         </button>
-      </div>
+    </div>
       
-
+    <div class="reservationInfo" *ngIf="selectedSlot">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Tu Reserva</h5>
+              <p class="card-text">Fecha: {{selectedSlot.ReservationDate}}</p>
+              <p class="card-text">Fecha: {{selectedSlot.StartHour}}</p>
+              <button class="btn btn-primary">Confirmar</button>
+            </div>
+          </div>
+    </div>
 </main>
