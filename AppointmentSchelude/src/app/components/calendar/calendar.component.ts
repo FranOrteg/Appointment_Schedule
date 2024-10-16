@@ -64,7 +64,6 @@ export class CalendarComponent {
     let formattedDate = this.formatDate(this.selectedDate);
     
     this.slots = await this.timeSlotService.getSlots(formattedDate);
-    console.log(this.slots);
 
     this.slots = this.slots.map(( data ) => {
       return {

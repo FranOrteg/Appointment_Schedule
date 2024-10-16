@@ -23,7 +23,9 @@ export class TimeslotsComponent {
   async requestSlots( Date: any ) {
     try {
       
-      this.timeSlots = await this.timeSlotsService.getSlots(Date);      
+      this.timeSlots = await this.timeSlotsService.getSlots(Date);    
+      this.timeSlots = this.formatSlots(this.timeSlots);  
+      
       return this.timeSlots;
     
     } catch (error) {
@@ -33,13 +35,42 @@ export class TimeslotsComponent {
     }
   }
 
+  formatSlots(slots: any[]): any[] {
+    return slots.map((data) => {
+      return {
+        ...data,
+        StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
+      };
+    });
+  }
+
   onSlotSelect( slot: any ) {
     this.selectedSlot = slot;
-    console.log(this.selectedSlot);
   }
 
   isSlotAvailable( slot: any ): boolean {
     return slot.Available;
+  }
+
+  async onSubmit() {
+    try {
+      
+      await this.timeSlotsService.reserveSlot(this.selectedSlot.ID);
+      
+      let formatDate = this.selectedSlot.ReservationDate.slice(0, 10);
+  
+      this.onClose();
+  
+      await this.requestSlots(formatDate);
+    
+    } catch (error) {
+      console.error('Error al reservar el slot:', error);
+    }
+  }
+  
+
+  onClose(){
+    this.selectedSlot = null;
   }
 
 }
