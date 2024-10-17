@@ -1,9 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+.demo-inline-calendar-card{
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-main {
-    padding: 50px 50px 50px 50px;
+
+span{
+    background-color: #ffc107;
 }

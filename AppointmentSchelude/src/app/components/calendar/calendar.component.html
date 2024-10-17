@@ -1,9 +1,14 @@
 <main>
-  
-  <mat-card class="demo-inline-calendar-card">
-    <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
-  </mat-card>
 
-  <timeslots *ngIf="slots.length > 0" [timeSlots]="slots"></timeslots>
+  <div class="container">
+    
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+    </mat-card>
+
+    <timeslots *ngIf="slots.length > 0" [timeSlots]="slots"></timeslots>
+    
+  </div>
+  
 
 </main>

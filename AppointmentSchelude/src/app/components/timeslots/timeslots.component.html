@@ -1,24 +1,31 @@
 <main>
 
-    <div class="slots-container">
+  <div class="container">
+    <div class="slots-container" *ngFor="let slot of timeSlots">
         <button
-          *ngFor="let slot of timeSlots"
+          class="slots"
           [ngClass]="{'selected': slot === selectedSlot}"
           [disabled]="!slot.Available"
           (click)="onSlotSelect(slot)">
           {{ slot.StartHour }}
         </button>
     </div>
+  </div>
+    
       
-    <div class="reservationInfo" *ngIf="selectedSlot">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Tu Reserva</h5>
-              <p class="card-text">Fecha: {{selectedSlot.ReservationDate}}</p>
-              <p class="card-text">Fecha: {{selectedSlot.StartHour}}</p>
+  <div class="reservationInfo" *ngIf="selectedSlot">
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Tu Reserva</h5>
+            <hr>
+            <p class="card-text"><span>Fecha: </span>{{selectedSlot.ReservationDate}}</p>
+            <p class="card-text"><span>Hora: </span>{{selectedSlot.StartHour}}</p>
+            <div class="botones">
               <button class="btn btn-primary" (click)="onSubmit()">Confirmar</button>
               <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
             </div>
           </div>
-    </div>
+        </div>
+  </div>
+
 </main>
