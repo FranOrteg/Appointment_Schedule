@@ -46,6 +46,14 @@ h5{
     margin-top: 20px;
 }
 
+.btn{
+    background-color: goldenrod;
+}
+
+.btn:hover{
+    background-color: rgb(202, 153, 29);
+}
+
 span{
     font-size: 18px;
     padding-right: 5px;

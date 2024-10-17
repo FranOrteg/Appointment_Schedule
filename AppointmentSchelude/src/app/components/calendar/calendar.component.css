@@ -8,6 +8,11 @@
 }
 
 
-span{
-    background-color: #ffc107;
+::ng-deep .mat-calendar-body-selected {
+    background-color: goldenrod !important;
+    color: #ffffff !important;
+}
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
+    border-color: goldenrod !important;
 }
