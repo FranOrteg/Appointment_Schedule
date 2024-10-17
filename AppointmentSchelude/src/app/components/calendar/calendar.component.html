@@ -1,19 +1,9 @@
 <main>
   
-  <mat-form-field appearance="fill">
-    <mat-label>Elige una fecha</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [(ngModel)]="selectedDate"
-      (dateChange)="onDateChange($event)"
-      placeholder="DD/MM/AAAA"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+  </mat-card>
 
   <timeslots *ngIf="slots.length > 0" [timeSlots]="slots"></timeslots>
-  
+
 </main>
-  

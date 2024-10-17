@@ -8,6 +8,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { TimeslotsComponent } from "../timeslots/timeslots.component";
 import { CommonModule } from '@angular/common';
 import { TimeslotsService } from '../../services/timeslots.service';
+import {MatCardModule} from '@angular/material/card';
+
 import moment from 'moment';
 
 export const MY_FORMATS = {
@@ -30,6 +32,7 @@ export const MY_FORMATS = {
     MatFormFieldModule,
     MatMomentDateModule,
     MatInputModule,
+    MatCardModule,
     FormsModule,
     TimeslotsComponent,
     CommonModule
@@ -59,19 +62,22 @@ export class CalendarComponent {
 
   
   async onDateChange(event: any) {
-    
-    this.selectedDate = new Date(event.value);
-    let formattedDate = this.formatDate(this.selectedDate);
-    
-    this.slots = await this.timeSlotService.getSlots(formattedDate);
-
-    this.slots = this.slots.map(( data ) => {
-      return {
-        ...data,
-        StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
-      }
-    });
+    if (event) {
+      this.selectedDate = new Date(event);
+  
+      let formattedDate = this.formatDate(this.selectedDate);
+  
+      this.slots = await this.timeSlotService.getSlots(formattedDate);
+  
+      this.slots = this.slots.map((data) => {
+        return {
+          ...data,
+          StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm'),
+        };
+      });
+    }
   }
+  
 
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
