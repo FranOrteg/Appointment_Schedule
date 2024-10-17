@@ -12,6 +12,10 @@ const getCustomerByID = (customerId) => {
     return db.query('SELECT * FROM Customers WHERE ID = ?', [customerId]);
 }
 
+const getAllcustomers = () => {
+    return db.query('SELECT * FROM Customers');
+}
+
 // Get User by Email
 
 const getUserByEmail = (email) => {
@@ -21,5 +25,6 @@ const getUserByEmail = (email) => {
 module.exports = {
     createCustomer,
     getCustomerByID,
-    getUserByEmail
+    getUserByEmail,
+    getAllcustomers
 }

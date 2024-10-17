@@ -1,10 +1,15 @@
 const { createToken } = require('../../helpers/utils');
-const { createCustomer, getUserByEmail } = require('../../models/users.model')
+const { createCustomer, getUserByEmail, getAllcustomers } = require('../../models/users.model')
 
 const router = require('express').Router();
 
-router.get('/', (req, res)=>{
-	res.send('Hola Usuarios');
+router.get('/', async (req, res)=>{
+    try {
+        const [response] = await getAllcustomers();
+        res.json(response);
+    } catch (error) {
+        res.json({ fatal: error.message});
+    }
 });
 
 // CUSTOMER SING UP
