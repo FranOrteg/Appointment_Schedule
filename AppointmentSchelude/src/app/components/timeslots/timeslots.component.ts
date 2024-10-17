@@ -25,6 +25,7 @@ export class TimeslotsComponent {
       
       this.timeSlots = await this.timeSlotsService.getSlots(Date);    
       this.timeSlots = this.formatSlots(this.timeSlots);  
+      console.log(this.timeSlots);
       
       return this.timeSlots;
     
@@ -39,13 +40,17 @@ export class TimeslotsComponent {
     return slots.map((data) => {
       return {
         ...data,
-        StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm')
+        StartHour: moment(data.StartHour, 'HH:mm:ss').format('HH:mm'),
+        ReservationDate: data.ReservationDate.slice(0, 10)
       };
     });
   }
 
   onSlotSelect( slot: any ) {
-    this.selectedSlot = slot;
+    this.selectedSlot = {
+      ...slot,
+      ReservationDate: moment(slot.ReservationDate).format('YYYY-MM-DD')
+    }
   }
 
   isSlotAvailable( slot: any ): boolean {
@@ -57,7 +62,7 @@ export class TimeslotsComponent {
       
       await this.timeSlotsService.reserveSlot(this.selectedSlot.ID);
       
-      let formatDate = this.selectedSlot.ReservationDate.slice(0, 10);
+      let formatDate = moment(this.selectedSlot.ReservationDate).format('YYYY-MM-DD');
   
       this.onClose();
   
